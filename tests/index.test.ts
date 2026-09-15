@@ -31,7 +31,7 @@ describe("basic folding", () => {
     expect(fold("ß Straße")).toBe("s Strase");
   });
 
-  test("maps currency symbols like the original", () => {
+  test("maps currency symbols", () => {
     expect(fold("€100 £5")).toBe("E100 5");
   });
 

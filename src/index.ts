@@ -41,7 +41,6 @@ const SPECIALS: Record<string, string> = {
 
 const SPECIALS_RE = new RegExp(`[${Object.keys(SPECIALS).join("")}]`, "gu");
 
-/** Unicode combining marks (categories Mn, Mc, Me). */
 const MARKS_RE = /\p{M}/gu;
 
 const GERMAN_RULES: Record<string, string> = {
@@ -68,7 +67,6 @@ const SERBIAN_RULES: Record<string, string> = {
   đ: "dj",
 };
 
-/** Locale keys are lowercased WordPress-style locale codes. */
 const LOCALE_RULES: Record<string, Record<string, string>> = {
   de_de: GERMAN_RULES,
   de_de_formal: GERMAN_RULES,
@@ -79,14 +77,9 @@ const LOCALE_RULES: Record<string, Record<string, string>> = {
   bs_ba: SERBIAN_RULES,
 };
 
-/** Multi-character replacements, applied before per-locale and Unicode folding. */
 const SEQUENCE_RULES: Record<string, Record<string, string>> = {
   ca: { l·l: "ll" },
 };
-
-function localeKey(locale: string | undefined): string | undefined {
-  return locale?.toLowerCase().replace(/-/g, "_");
-}
 
 /**
  * Fold diacritics to their Latin-ASCII base letters.
@@ -101,7 +94,7 @@ function localeKey(locale: string | undefined): string | undefined {
  *   Locale matching is case-insensitive.
  */
 export function fold(input: string, locale?: string): string {
-  const key = localeKey(locale);
+  const key = locale?.toLowerCase().replace(/-/g, "_");
   let str = input;
 
   if (key) {
