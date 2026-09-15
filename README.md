@@ -26,12 +26,12 @@ fold(input: string, locale?: string): string
 
 Pass a locale for special-case rules:
 
-| Locale(s)                                          | Rule                                   | Example                                  |
-| -------------------------------------------------- | -------------------------------------- | ---------------------------------------- |
-| `de_DE`, `de_DE_formal`, `de_CH`, `de_CH_informal` | `Ä`→`Ae`, `Ö`→`Oe`, `Ü`→`Ue`, `ß`→`ss` | `fold("Ärger", "de_DE")` → `"Aerger"`    |
-| `da_DK`                                            | `Æ`→`Ae`, `Ø`→`Oe`, `Å`→`Aa`           | `fold("Århus", "da_DK")` → `"Aarhus"`    |
-| `sr_RS`, `bs_BA`                                   | `Đ`→`DJ`                               | `fold("Đakovo", "sr_RS")` → `"DJakovo"`  |
-| `ca`                                               | `l·l`→`ll`                             | `fold("paral·lel", "ca")` → `"parallel"` |
+| Locale(s)                                          | Rule                                               | Example                                  |
+| -------------------------------------------------- | -------------------------------------------------- | ---------------------------------------- |
+| `de_DE`, `de_DE_formal`, `de_CH`, `de_CH_informal` | `Ää`→`Ae/ae`, `Öö`→`Oe/oe`, `Üü`→`Ue/ue`, `ß`→`ss` | `fold("Ärger", "de_DE")` → `"Aerger"`    |
+| `da_DK`                                            | `Ææ`→`Ae/ae`, `Øø`→`Oe/oe`, `Åå`→`Aa/aa`           | `fold("Århus", "da_DK")` → `"Aarhus"`    |
+| `sr_RS`, `bs_BA`                                   | `Đ`→`DJ`, `đ`→`dj`                                 | `fold("Đakovo", "sr_RS")` → `"DJakovo"`  |
+| `ca`                                               | `l·l`→`ll`                                         | `fold("paral·lel", "ca")` → `"parallel"` |
 
 Locale matching is case-insensitive and accepts `-` or `_` separators
 (`de-de`, `DE_DE`, `da_DK`…). Without a locale, umlauts fold to single
