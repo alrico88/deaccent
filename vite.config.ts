@@ -6,6 +6,7 @@ export default defineConfig({
       generator: "tsgo",
     },
     exports: true,
+    format: ["esm", "cjs"],
   },
   lint: {
     options: {
