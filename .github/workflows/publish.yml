@@ -35,4 +35,4 @@ jobs:
       # Requires the package to exist on npm with this workflow registered
       # as trusted publisher (settings -> package -> Trusted Publisher).
       - name: Publish to npm
-        run: npm publish --provenance
+        run: pnpm publish --provenance --no-git-checks
