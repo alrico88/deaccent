@@ -1,0 +1,38 @@
+name: Publish to npm
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    environment: npm
+    steps:
+      - uses: actions/checkout@v6
+      - uses: voidzero-dev/setup-vp@v1.20.0
+        with:
+          node-version: "24"
+          cache: true
+      - run: vp install
+      - run: vp pack
+      # Fails if the pushed tag does not match package.json version
+      - name: Verify tag matches package version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PKG=$(node -p "require('./package.json').version")
+          if [ "$TAG" != "$PKG" ]; then
+            echo "::error::Tag v$TAG does not match package.json version $PKG"
+            exit 1
+          fi
+      # OIDC trusted publishing: no NPM_TOKEN secret involved.
+      # Requires the package to exist on npm with this workflow registered
+      # as trusted publisher (settings -> package -> Trusted Publisher).
+      - name: Publish to npm
+        run: npm publish --provenance

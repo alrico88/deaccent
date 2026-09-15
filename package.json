@@ -1,0 +1,56 @@
+{
+  "name": "deaccent",
+  "version": "0.1.0",
+  "description": "Fold accented and diacritic characters to their Latin-ASCII base letters. Zero dependencies.",
+  "keywords": [
+    "accents",
+    "ascii",
+    "diacritics",
+    "fold",
+    "normalize",
+    "search",
+    "slugify",
+    "transliterate",
+    "unicode"
+  ],
+  "homepage": "https://github.com/alrico88/deaccent#readme",
+  "bugs": {
+    "url": "https://github.com/alrico88/deaccent/issues"
+  },
+  "license": "MIT",
+  "author": "Alberto Rico <alberto@alrico.es>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alrico88/deaccent.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "dev": "vp pack --watch",
+    "prepublishOnly": "vp run build"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "bumpp": "^11.1.0",
+    "typescript": "^7.0.2",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.7.0",
+      "onFail": "download"
+    }
+  }
+}
