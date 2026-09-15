@@ -1,13 +1,15 @@
 # deaccent
 
 Fold accented and diacritic characters to their Latin-ASCII base letters.
-Zero dependencies, ~60 lines, works everywhere JavaScript works.
+Zero dependencies, one small file, dual ESM + CJS.
 
 Port of the classic WordPress-style `remove_diacritics` string map, rebuilt
 with native Unicode handling: `String.prototype.normalize("NFD")` plus
 combining-mark stripping covers accented letters natively, and a small map
 handles what decomposition can't (ligatures like `Æ`, `Œ`, eth `ð`, thorn
 `þ`, sharp s `ß`, and friends).
+
+Requires ES2021 (`String.prototype.replaceAll`): Node 15+, modern browsers.
 
 ```ts
 import { fold } from "deaccent";
@@ -50,7 +52,7 @@ characters Unicode cannot decompose (ligatures, `Đ`, `Ł`, `ø`, `€`…).
 vp install   # dependencies
 vp test      # unit tests (vitest)
 vp check     # format, lint, type check
-vp pack      # build to dist/
+vp pack      # build dual ESM + CJS to dist/
 ```
 
 ## License
