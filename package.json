@@ -1,6 +1,6 @@
 {
   "name": "deaccent",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Fold accented and diacritic characters to their Latin-ASCII base letters. Zero dependencies.",
   "keywords": [
     "accents",
